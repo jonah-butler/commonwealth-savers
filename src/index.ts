@@ -1,8 +1,8 @@
-import { Account } from './accounts/account';
+import { Account } from './account/account';
 import {
   type DistributionParams,
   DistributionStyle,
-} from './accounts/account.types';
+} from './account/account.types';
 
 const startingBalance = 10000;
 

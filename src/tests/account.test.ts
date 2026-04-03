@@ -1,9 +1,9 @@
-import { Account } from '../accounts/account';
+import { Account } from '../account/account';
 import {
   DistributionParams,
   DistributionStyle,
   ERRORS,
-} from '../accounts/account.types';
+} from '../account/account.types';
 
 describe('Testing the Account class transfer/deposit/deduct functionality', () => {
   it('balance returns the cents value', () => {
