@@ -6,7 +6,7 @@ import {
 
 const startingBalance = 10000;
 
-const sourceAccount = new Account({
+const sourceAccountA = new Account({
   name: 'source account',
   balance: startingBalance,
 });
@@ -30,17 +30,19 @@ console.log('');
 console.log('------------------------------------------------------');
 console.log('');
 console.log(
-  `transferring $${startingBalance} equally across ${transferParamsEqual.recipients.length} accounts`,
+  `transferring ${sourceAccountA.balancePretty} equally across ${transferParamsEqual.recipients.length} accounts`,
 );
-console.log(`source account starting balance: ${sourceAccount.balancePretty}`);
+console.log(`source account starting balance: ${sourceAccountA.balancePretty}`);
 console.log(`recipient a starting balance: ${recipientA.balancePretty}`);
 console.log(`recipient b starting balance: ${recipientB.balancePretty}`);
 console.log(`recipient c starting balance: ${recipientC.balancePretty}`);
 
 // perform transfer
-sourceAccount.transfer(transferParamsEqual);
+sourceAccountA.transfer(transferParamsEqual);
 
-console.log(`source account resulting balance: ${sourceAccount.balancePretty}`);
+console.log(
+  `source account resulting balance: ${sourceAccountA.balancePretty}`,
+);
 console.log(`recipient a resulting balance: ${recipientA.balancePretty}`);
 console.log(`recipient b resulting balance: ${recipientB.balancePretty}`);
 console.log(`recipient c resulting balance: ${recipientC.balancePretty}`);
@@ -49,13 +51,13 @@ console.log('');
 console.log('------------------------------------------------------');
 console.log('');
 console.log(
-  'Feature 2: Distribute some funds proportionally across 3 accounts, with a remaning balance in the source account',
+  'Feature 2: Distribute some funds proportionally across 3 accounts, with a remaining balance in the source account',
 );
 console.log('');
 console.log('------------------------------------------------------');
 console.log('');
 
-sourceAccount.deposit(1000);
+const sourceAccountB = new Account({ name: 'source account b', balance: 1000 });
 
 const recipientD = new Account({ name: 'recipient d' });
 const recipientE = new Account({ name: 'recipient e' });
@@ -79,14 +81,16 @@ console.log(
   `transferring a total of $${totalTransfer} across ${transferParamsProportional.recipients.length} accounts`,
 );
 
-console.log(`source account starting balance: ${sourceAccount.balancePretty}`);
+console.log(`source account starting balance: ${sourceAccountB.balancePretty}`);
 console.log(`recipient d starting balance: ${recipientD.balancePretty}`);
 console.log(`recipient e starting balance: ${recipientE.balancePretty}`);
 console.log(`recipient f starting balance: ${recipientF.balancePretty}`);
 
-sourceAccount.transfer(transferParamsProportional);
+sourceAccountB.transfer(transferParamsProportional);
 
-console.log(`source account resulting balance: ${sourceAccount.balancePretty}`);
+console.log(
+  `source account resulting balance: ${sourceAccountB.balancePretty}`,
+);
 console.log(`recipient d resulting balance: ${recipientD.balancePretty}`);
 console.log(`recipient e resulting balance: ${recipientE.balancePretty}`);
 console.log(`recipient f resulting balance: ${recipientF.balancePretty}`);

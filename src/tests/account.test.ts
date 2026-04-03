@@ -5,7 +5,7 @@ import {
   ERRORS,
 } from '../accounts/account.types';
 
-describe('Account', () => {
+describe('Testing the Account class transfer/deposit/deduct functionality', () => {
   it('balance returns the cents value', () => {
     const startingAmount = 10;
     const account = new Account({
@@ -140,6 +140,10 @@ describe('Account', () => {
     expect(recipientA.balance).toBe(333334);
     expect(recipientB.balance).toBe(333333);
     expect(recipientC.balance).toBe(333333);
+
+    expect(
+      (recipientA.balance + recipientB.balance + recipientC.balance) / 100,
+    ).toBe(amountToTransfer);
   });
 
   // Requirement #2
@@ -173,6 +177,13 @@ describe('Account', () => {
     expect(recipientA.balance).toBe(150000);
     expect(recipientB.balance).toBe(17250);
     expect(recipientC.balance).toBe(277434);
+
+    const totalTransfer = transfer.recipients.reduce(
+      (acc, curr) => acc + curr.amount,
+      0,
+    );
+    expect(totalTransfer).toBe(4446.84);
+    expect(sourceAccount.balance).toBe((initialBalance - totalTransfer) * 100);
   });
 
   it('proportional fails if total exceeds balance', () => {
@@ -214,6 +225,58 @@ describe('Account', () => {
 
     const transfer: DistributionParams = {
       distributionStyle: DistributionStyle.Proportional,
+      recipients: [],
+    };
+
+    const result = sourceAccount.transfer(transfer);
+
+    expect(result.success).toBe(false);
+    if (!result.success) {
+      expect(result.error).toBe(ERRORS.NO_RECIPIENTS);
+    }
+  });
+
+  it('equal fails if total exceeds balance', () => {
+    const initialBalance = 10000;
+
+    const sourceAccount = new Account({
+      name: 'source account',
+      balance: initialBalance,
+    });
+
+    const recipientA = new Account({ name: 'recipient account a' });
+    const recipientB = new Account({ name: 'recipient account b' });
+    const recipientC = new Account({ name: 'recipient account c' });
+
+    const transfer: DistributionParams = {
+      distributionStyle: DistributionStyle.Equal,
+      amount: 15000,
+      recipients: [
+        { account: recipientA },
+        { account: recipientB },
+        { account: recipientC },
+      ],
+    };
+
+    const result = sourceAccount.transfer(transfer);
+
+    expect(result.success).toBe(false);
+    if (!result.success) {
+      expect(result.error).toBe(ERRORS.INSUFFICIENT_FUNDS);
+    }
+  });
+
+  it('equal fails - no recipients for transfer', () => {
+    const initialBalance = 10000;
+
+    const sourceAccount = new Account({
+      name: 'source account',
+      balance: initialBalance,
+    });
+
+    const transfer: DistributionParams = {
+      distributionStyle: DistributionStyle.Equal,
+      amount: 10000,
       recipients: [],
     };
 

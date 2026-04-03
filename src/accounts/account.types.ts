@@ -10,9 +10,7 @@ export enum DistributionStyle {
   Proportional,
 }
 
-export type Cents = number;
-export type Dollars = number;
-
+// Discriminated union for transfer results
 export type TransferResult =
   | { success: true }
   | { success: false; error: string };
@@ -22,6 +20,7 @@ export type DistributionRecipientsProportional = DistributionRecipientsEqual & {
   amount: number; // in dollars
 };
 
+// Discriminated union for transfer parameters
 export type DistributionParams =
   | {
       amount: number; // in dollars

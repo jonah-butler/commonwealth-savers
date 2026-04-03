@@ -38,7 +38,7 @@ export class Account {
   /**
    *
    * @param amount amount in cents
-   * @returns <number> represented in dollars to 100th decimal place
+   * @returns <number> represented in dollars to the cent (2 decimal places)
    * ---------------
    * converts a cents amount to dollars for external display
    * ex. 1050 becomes 10.50
@@ -134,9 +134,7 @@ export class Account {
 
   deposit(amountInDollars: number): void {
     const amountInCents = Account.toCents(amountInDollars);
-    const newBalance = this._balance + amountInCents;
-
-    this._balance = newBalance;
+    this._balance += amountInCents;
   }
 
   transfer(params: DistributionParams): TransferResult {

@@ -1,4 +1,4 @@
-## Commonwealth Savers Technical Excersise
+## Commonwealth Savers Technical Exercise
 
 > Write a function that allows a customer to distribute funds from a single source account with a value of
 > $10,000, across three (3) target accounts. Assume the function is already aware of the customer’s account
