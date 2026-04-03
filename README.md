@@ -33,7 +33,7 @@ This project includes an `Account` class:
 - Usage:
 
 ```typescript
-//optional starting balance
+// optional starting balance
 const account = new Account({ name: 'account name', balance: 100 });
 
 // or deposit after initialization
