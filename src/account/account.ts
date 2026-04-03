@@ -22,6 +22,10 @@ export class Account {
     return this._balance;
   }
 
+  get balancePretty(): string {
+    return `$${Account.toDollars(this._balance)}`;
+  }
+
   /**
    *
    * @param amount amount in dollars
@@ -163,9 +167,5 @@ export class Account {
         error: error instanceof Error ? error.message : ERRORS.TRANSFER_FAILED,
       };
     }
-  }
-
-  get balancePretty(): string {
-    return `$${Account.toDollars(this._balance)}`;
   }
 }
