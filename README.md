@@ -26,7 +26,7 @@ _build and run project_
 
 ## Description
 
-This project includes an `Account` class with the following method for transferring funds across accounts:
+This project includes an `Account` class:
 
 ### `Account`
 
@@ -36,11 +36,11 @@ This project includes an `Account` class with the following method for transferr
 //optional starting balance
 const account = new Account({ name: 'account name', balance: 100 });
 
-// or
-// deposit after initialization
-
+// or deposit after initialization
 account.deposit(100); // in dollars
 ```
+
+it includes the following method for transferring funds across accounts:
 
 - `.transfer()`
 - Params
@@ -68,7 +68,7 @@ const transferParamsProportional: DistributionParams = {
 
 ```typescript
 const transferParamsEqual: DistributionParams = {
-  amount: startingBalance,
+  amount: 1000.19,
   distributionStyle: DistributionStyle.Equal,
   recipients: [
     { account: recipientA },
