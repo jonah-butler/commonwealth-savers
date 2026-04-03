@@ -31,8 +31,8 @@ export class Account {
    * @param amount amount in dollars
    * @returns <number> represented in cents
    * ---------------
-   * converts a dollar amount to cents for internal calculations/storage
-   * ex. 10.50 becomes 1050
+   * converts a dollar amount to cents for internal calculations/storage.
+   * ex. 10.50 becomes 1050.
    * ---------------
    */
   private static toCents(amount: number): number {
@@ -44,8 +44,8 @@ export class Account {
    * @param amount amount in cents
    * @returns <number> represented in dollars to the cent (2 decimal places)
    * ---------------
-   * converts a cents amount to dollars for external display
-   * ex. 1050 becomes 10.50
+   * converts a cents amount to dollars for external display.
+   * ex. 1050 becomes 10.50.
    * ---------------
    */
   private static toDollars(amount: number): number {
@@ -100,9 +100,9 @@ export class Account {
    * @param recipients the recipients with included amount to transfer
    * @throws <Error> on insufficient funds
    * ---------------
-   * a proportional group transfer will be only allowed if
-   * the total amount expected for each recipient is <= the
-   * source account balance. partial transfers are not allowed.
+   * a proportional group transfer will be only allowed if the total amount
+   * expected for each recipient is <= the source account balance.
+   * partial transfers are not allowed.
    * ---------------
    */
   private handleProportionalStyleTransfer(
@@ -125,7 +125,8 @@ export class Account {
    * @param recipients <DistributionRecipientsProportional[]>
    * @returns <number> total amount in cents to be transferred to all recipients
    * ---------------
-   * calculates the total amount to be transferred to all recipients in a proportional transfer
+   * calculates the total amount to be transferred to all recipients in a
+   * proportional transfer.
    * ---------------
    */
   private calculateRecipientTotal(
@@ -141,6 +142,15 @@ export class Account {
     this._balance += amountInCents;
   }
 
+  /**
+   *
+   * @param params <DistributionParams>
+   * @returns <TransferResult>
+   * ---------------
+   * performs a transfer based on the transfer type and other distribution parameters.
+   * validates the transfer parameters and returns a success status and/or an error message.
+   * ---------------
+   */
   transfer(params: DistributionParams): TransferResult {
     if (params.recipients.length === 0) {
       return { success: false, error: ERRORS.NO_RECIPIENTS };
