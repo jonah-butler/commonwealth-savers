@@ -1,0 +1,23 @@
+{
+  "name": "cs-transaction",
+  "version": "1.0.0",
+  "description": "simple banking transaction implementation for commonwealth savers",
+  "license": "ISC",
+  "author": "jayimbee",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "tsc && node dist/index.js"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^25.5.0",
+    "jest": "^30.3.0",
+    "ts-jest": "^29.4.6",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "prettier": "^3.8.1"
+  }
+}
